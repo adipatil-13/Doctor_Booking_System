@@ -1,0 +1,163 @@
+{% extends 'base.html' %} 
+ {% block content %}
+
+<div class="container-fluid px-1 py-5 mx-auto">
+  <div class="row d-flex justify-content-center" style="margin-top: 100px">
+    <div
+      class="col-xl-7 col-lg-8 col-md-9 col-11 text-center"
+      style="
+        background: #fff;
+        border-radius: 0.5rem;
+        box-shadow: var(--box-shadow);
+        border: var(--border);
+        padding: 2.5rem;
+      "
+    >
+      <h3 class="heading" style="font-size: 30px">
+        <b><span>BOOK</span> APPOINTMENT</b>
+      </h3>
+      <p class="blue-text" style="font-size: 15px">
+        Use the following form to contact us and request an appointment..
+      </p>
+      <div class="card" style="font-size: 12px">
+        <form class="form-card" method="POST" action="{% url 'appointment' %}">
+          {% csrf_token %}
+          <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">
+              <label class="form-control-label px-3"
+                >First name<span class="text-danger"> *</span>
+              </label>
+              <input
+                required
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="Enter your first name"
+                onblur="validate(1)"
+                style="
+                  background: #fff;
+                  border-radius: 0.5rem;
+                  box-shadow: var(--box-shadow);
+                  border: var(--border);
+                  padding: 1rem;
+                "
+              />
+            </div>
+
+            <div class="form-group col-sm-6 flex-column d-flex">
+              <label class="form-control-label px-3"
+                >Last name<span class="text-danger"> *</span></label
+              >
+              <input
+                required
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Enter your last name"
+                onblur="validate(2)"
+                style="
+                  background: #fff;
+                  border-radius: 0.5rem;
+                  box-shadow: var(--box-shadow);
+                  border: var(--border);
+                  padding: 1rem;
+                "
+              />
+            </div>
+          </div>
+
+          <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">
+              <label class="form-control-label px-3"
+                >Email<span class="text-danger"> *</span>
+              </label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                onblur="validate(3)"
+                style="
+                  background: #fff;
+                  border-radius: 0.5rem;
+                  box-shadow: var(--box-shadow);
+                  border: var(--border);
+                  padding: 1rem;
+                  text-transform:none;
+                "
+                autocapitalize="none"
+                
+              />
+            </div>
+
+            <div class="form-group col-sm-6 flex-column d-flex">
+              <label class="form-control-label px-3"
+                >Phone number<span class="text-danger"> *</span></label
+              >
+              <input
+                type="text"
+                id="mob"
+                name="mobile"
+                placeholder="Enter your mobile number"
+                onblur="validate(4)"
+                style="
+                  background: #fff;
+                  border-radius: 0.5rem;
+                  box-shadow: var(--box-shadow);
+                  border: var(--border);
+                  padding: 1rem;
+                "
+              />
+            </div>
+          </div>
+
+          <div class="row justify-content-between text-left">
+            <div class="form-group col-12 flex-column d-flex">
+              <label class="form-control-label px-3"
+                >Your request<span class="text-danger"> *</span></label
+              >
+              <textarea
+                type="text"
+                id="ans"
+                rows=7
+                name="request"
+                placeholder="Describe your reason for the appointment"
+                onblur="validate(6)"
+                style="
+                  background: #fff;
+                  border-radius: 0.5rem;
+                  box-shadow: var(--box-shadow);
+                  border: var(--border);
+                  padding: 1rem;
+                  text-transform:none;
+                "
+              ></textarea>
+            </div>
+          </div>
+          <div class="row justify-content-end" style="padding-right: 300px">
+            <div class="form-group col-sm-6">
+              <button
+                type="submit"
+                class="btn"
+                style="font-size: 15px; width: 100px; text-align: center"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% if messages %}
+<div class="card notification-card notification-invitation">
+  <div class="card-body" style="font-size: 30px; padding-left:300px;">
+    {% for message in messages %}
+    <div class="card-title" style="color: var(--blue);">{{message}}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}
